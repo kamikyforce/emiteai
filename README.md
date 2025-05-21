@@ -28,6 +28,12 @@ docker compose down --volumes --remove-orphans \
 
 ```bash
 cd emiteai-frontend
+
+touch .env && \
+grep -q '^REACT_APP_API_URL=' .env && \
+sed -i '' 's|^REACT_APP_API_URL=.*|REACT_APP_API_URL=http://localhost:8080|' .env || \
+echo 'REACT_APP_API_URL=http://localhost:8080' >> .env
+
 npm install
 npm start
 ```
